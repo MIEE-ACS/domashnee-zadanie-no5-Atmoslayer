@@ -17,9 +17,9 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="Bt1" Content="Найти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="687,317,0,0" Click="Bt1_Click"/>
+        <Button x:Name="Bt1" Content="Найти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="254,89,0,0" Click="Bt1_Click"/>
 
-        <TextBox x:Name="Tb2" HorizontalAlignment="Left" Height="75" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Margin="106,89,0,0" Foreground="White">
+        <TextBox x:Name="Tb2" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Margin="106,89,0,0" Foreground="White">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF231F1C" Offset="0"/>
@@ -28,7 +28,7 @@
                 </LinearGradientBrush>
             </TextBox.Background>
         </TextBox>
-        <TextBox x:Name="Tb3" HorizontalAlignment="Left" Height="75" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="163" Margin="106,224,0,0" Foreground="White">
+        <TextBox x:Name="Tb3" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="143" Margin="106,279,0,0" Foreground="White">
             <TextBox.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF231F1C" Offset="0"/>
@@ -38,8 +38,11 @@
             </TextBox.Background>
         </TextBox>
         <Label Content="Исполнитель:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,89,0,0" Height="23" Width="91" Foreground="White"/>
-        <Button x:Name="Bt2" Content="Сброс" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="687,342,0,0"/>
-        <Label Content="Время:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,224,0,0" RenderTransformOrigin="0.5,0.5" Width="80" Foreground="White"/>
+        <Button x:Name="Bt2" Content="Сброс" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="687,342,0,0" Click="Bt2_Click"/>
+        <Label Content="Время:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,279,0,0" RenderTransformOrigin="0.5,0.5" Width="59" Foreground="White" Height="31"/>
+        <Button x:Name="Bt3" Content="Найти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="254,279,0,0" Click="Bt3_Click"/>
+        <Label Content="Ваш сегодняшний плейлист:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="334,58,0,0" Width="166" Foreground="White"/>
+        <Image Grid.Row="0" Source ="Resources/котик.jpg" Margin="106,117,465,147"/>
 
     </Grid>
 </Window>

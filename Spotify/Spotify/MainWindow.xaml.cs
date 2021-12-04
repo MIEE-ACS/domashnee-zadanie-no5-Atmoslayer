@@ -20,35 +20,79 @@ namespace Spotify
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+
+    
+    public class Song
     {
+        public string Author { get; set; }
+        public string Name { get; set; }
+        public string Album { get; set; }
+        public double Length { get; set; }
+        public int Year { get; set; }
+
+        
+        public Song()
+        {
+            Author = "";
+            Name = "";
+            Album = "";
+            Length = 0;
+            Year = 0;
+        
+    }
+        
+        public void AddSong(string a, string b, string c, double d, int e)
+        {
+            Author = a;
+            Name = b;
+            Album = c;
+            Length = d;
+            Year = e;
+        }
+        
+
+    }
+
+
+    public partial class MainWindow : Window
+
+    {
+
+        Song[] Playlist = new Song[7];
+
+
+
+
         public MainWindow()
         {
-            Song[] Playlist = new Song[7];
+            InitializeComponent();
 
-            Playlist[0] = new Song { Author = "Motionless in White", Name = "Another Life", Album = "Disguise", Length = 3.25, Year = 2020 };
-            Playlist[1] = new Song { Author = "We Butter The Bread With The Butter", Name = "20km/h", Album = "Das Album", Length = 3.18, Year = 2021 };
-            Playlist[2] = new Song { Author = "Эпидемия", Name = "Возвращение Корвина", Album = "Призраки и тени", Length = 5.41, Year = 2021 };
-            Playlist[3] = new Song { Author = "Fullmoon", Name = "Sonata Arctica", Album = "Ecliptica Revisited 15th Anniversary", Length = 5.12, Year = 2014 };
-            Playlist[4] = new Song { Author = "GONE.Fludd", Name = "Тени Хиросимы", Album = "DIGITAL FANTAZY", Length = 2.14, Year = 2021 };
-            Playlist[5] = new Song { Author = "Metallica", Name = "Seeak and Destroy", Album = "Kill 'Em All", Length = 6.55, Year = 1983 };
-            Playlist[6] = new Song { Author = "Parkway Drive", Name = "Prey", Album = "Reverence", Length = 4.19, Year = 2018 };
-        }
+            
 
-        public void Bt1_Click(object sender, RoutedEventArgs e, Song[] Playlist)
-        {
+            Playlist[0] = new Song();
+            Playlist[1] = new Song();
+            Playlist[2] = new Song();
+            Playlist[3] = new Song();
+            Playlist[4] = new Song();
+            Playlist[5] = new Song();
+            Playlist[6] = new Song();
 
+            Playlist[0].AddSong("Motionless in White", "Another Life", "Disguise", 3.25, 2020);
+            Playlist[1].AddSong("We Butter The Bread With The Butter","20km/h","Das Album",3.18,2021);
+            Playlist[2].AddSong ("Эпидемия","Возвращение Корвина","Призраки и тени",5.41,2021);
+            Playlist[3].AddSong ("Fullmoon", "Sonata Arctica", "Ecliptica Revisited 15th Anniversary",5.12,2014 );
+            Playlist[4].AddSong ("GONE.Fludd","Тени Хиросимы", "DIGITAL FANTAZY", 2.14,2021 );
+            Playlist[5].AddSong ("Metallica","Seeak and Destroy","Kill 'Em All",6.55,1983 );
+            Playlist[6].AddSong ("Parkway Drive","Prey","Reverence",4.19,2018 );
 
+           
 
-
-            Tb1.Text += "Автор/Название/Альбом/Длительность/Длительность/Год/";
+            Tb1.Text += "Автор/Название/Альбом/Длительность/Год/";
             Tb1.Text += "\n";
             Tb1.Text += "\n";
 
             for (int i = 0; i < 7; i++)
             {
-
-
 
                 Tb1.Text += Playlist[i].Author;
                 Tb1.Text += "/";
@@ -64,19 +108,154 @@ namespace Spotify
                 Tb1.Text += "\n";
             }
 
-
         }
-
-
-
-        public class Song
+        
+        
+        private void Bt1_Click(object sender, RoutedEventArgs e)
         {
-            public string Author { get; set; }
-            public string Name { get; set; }
-            public string Album { get; set; }
-            public double Length { get; set; }
-            public int Year { get; set; }
+            string usAuthor = Tb2.Text;
+            bool flag = false;
+            
+            for (int i = 0; i < 7; i++)
+            {
+
+                if (usAuthor == Playlist[i].Author)
+                {
+                    Tb1.Text = "Песни от этого исполнителя: ";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "Автор/Название/Альбом/Длительность/Год/";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "\n";
+                    Tb1.Text += Playlist[i].Author;
+                    Tb1.Text += "/";
+                    Tb1.Text += Playlist[i].Name;
+                    Tb1.Text += "/";
+                    Tb1.Text += Playlist[i].Album;
+                    Tb1.Text += "/";
+                    Tb1.Text += Playlist[i].Length.ToString();
+                    Tb1.Text += "/";
+                    Tb1.Text += Playlist[i].Year.ToString();
+                    Tb1.Text += "/";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "\n";
+                    flag = true;
+                }
+            
+            
+            }
+            if (flag == false)
+            {
+                Tb1.Text = "Совпадения не найдены. Проверьте правильность введённых данных";
+            }
+        
+        Bt1.IsEnabled = false;
+
 
         }
+
+        private void Bt2_Click(object sender, RoutedEventArgs e)
+        {
+            Bt1.IsEnabled = true;
+            Bt3.IsEnabled = true;
+            Tb2.Text = "";
+            Tb3.Text = "";
+            Tb1.Text = "Автор/Название/Альбом/Длительность/Год/";
+            Tb1.Text += "\n";
+            Tb1.Text += "\n";
+
+            for (int i = 0; i < 7; i++)
+            {
+
+                Tb1.Text += Playlist[i].Author;
+                Tb1.Text += "/";
+                Tb1.Text += Playlist[i].Name;
+                Tb1.Text += "/";
+                Tb1.Text += Playlist[i].Album;
+                Tb1.Text += "/";
+                Tb1.Text += Playlist[i].Length.ToString();
+                Tb1.Text += "/";
+                Tb1.Text += Playlist[i].Year.ToString();
+                Tb1.Text += "/";
+                Tb1.Text += "\n";
+                Tb1.Text += "\n";
+            }
+        }
+
+        
+        private void Bt3_Click(object sender, RoutedEventArgs e)
+        {
+            string userdata = Tb3.Text;
+            double usLengt1h = 0;
+
+            try
+            {
+                usLengt1h = double.Parse(userdata);
+
+                if (usLengt1h <= 0)
+                {
+                    Tb1.Text = "Отрицательное время это круто, но положительное лучше";
+                    Bt3.IsEnabled = false;
+                }
+                else
+                {
+
+                    bool flag = false;
+
+                    Tb1.Text = "Песни, длительность которых привышает введённое значение: ";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "Автор/Название/Альбом/Длительность/Год/";
+                    Tb1.Text += "\n";
+                    Tb1.Text += "\n";
+
+                    for (int i = 0; i < 7; i++)
+                    {
+
+                        if (usLengt1h < Playlist[i].Length)
+                        {
+
+
+                            Tb1.Text += Playlist[i].Author;
+                            Tb1.Text += "/";
+                            Tb1.Text += Playlist[i].Name;
+                            Tb1.Text += "/";
+                            Tb1.Text += Playlist[i].Album;
+                            Tb1.Text += "/";
+                            Tb1.Text += Playlist[i].Length.ToString();
+                            Tb1.Text += "/";
+                            Tb1.Text += Playlist[i].Year.ToString();
+                            Tb1.Text += "/";
+                            Tb1.Text += "\n";
+                            Tb1.Text += "\n";
+                            flag = true;
+                        }
+
+
+                    }
+                    if (flag == false)
+                    {
+                        Tb1.Text = "Совпадения не найдены. Проверьте правильность введённых данных";
+                    }
+                    Bt3.IsEnabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Tb1.Text = "Проверьте правильность введённых данных";
+                Bt3.IsEnabled = false;
+            }
+
+            
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
 }
